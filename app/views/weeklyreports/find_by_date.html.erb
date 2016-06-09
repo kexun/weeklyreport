@@ -1,0 +1,46 @@
+<script type="text/javascript" src="/redmine/plugin_assets/weeklyreport/javascripts/datepicker.js" charset="UTF-8"> </script>
+<div id="product-list">
+	
+	<form action="/redmine/weeklyreports/find_by_date" method="get" name="frm1">
+		<br />
+		<table width="95%">
+			<tr>
+				<td width="15%"><%= label :starttime, :开始日期 %><%= text_field :weeklyreport, :starttime, :size=>10, :value => @starttime %></td>
+				<td width="15%"><%= label :endtime, :结束日期 %><%= text_field :weeklyreport, :endtime, :size=>10, :value => @endtime %></td>
+				<td align="left"><input type="submit" value="查询"></td>
+				<td align="right"><a href="/redmine/weeklyreports/new" class="icon icon-add">新建周报</a></td>
+			</tr>
+		</table>
+		<br />
+	</form>
+
+	<table class="list" border="1px" cellspacing="0px" style="border-collapse:collapse">
+		<thead>
+			<tr>
+				<th>开始日期</th>
+				<th>结束日期</th>
+				<th>周报内容</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for weeklyreport in @weeklyreports %>
+			<tr>
+				<td width="10%" align="center"><span><%= weeklyreport.starttime %></span></td>
+				<td width="10%" align="center"><%= weeklyreport.endtime %></td>
+				<td><%= textilizable(weeklyreport, :content) %></td>
+				<td width="10%" align="center">
+					<%= link_to '查看', weeklyreport %>
+					<%= link_to '编辑', edit_weeklyreport_path(weeklyreport) %>
+					<%= link_to '删除', weeklyreport,
+					:confirm => 'Are you sure？',
+					:method => :delete %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	
+</div>
+
+

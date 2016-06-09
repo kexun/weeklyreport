@@ -1,0 +1,45 @@
+<%= form_for(@weeklyreport) do |f| %>
+  <% if @weeklyreport.errors.any? %>
+    <div id="errorExplanation">
+      <ul>
+      <% @weeklyreport.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <h5 style="display:inline-block"><%= f.label :starttime, :开始日期 %><span class="required"> *</span></h5>
+    <% if @monday.nil? %>
+    	<%= text_field :weeklyreport, :starttime, :size=>10 %>
+    <% else %>
+    	<%= text_field :weeklyreport, :starttime, :size=>10, :value=>@monday.strftime("%Y-%m-%d") %>
+    <% end %>
+  </div>
+  <div class="field">
+    <h5 style="display:inline-block"><%= f.label :endtime, :结束日期 %><span class="required"> *</span></h5>
+    <% if @sunday.nil? %>
+    	<%= text_field :weeklyreport, :endtime, :size=>10 %>
+    <% else %>
+    	<%= text_field :weeklyreport, :endtime, :size=>10, :value=>@sunday.strftime("%Y-%m-%d") %>
+    <% end %>
+  </div>
+  <div class="field">
+    <h5 style="display:inline-block"><%= f.label :content, :周报内容%><span class="required"> *</span></h5>
+    <%= f.text_area :content, :cols=>100 %>
+  </div>
+  <input type="hidden" id=weeklyreport_projectid name=weeklyreport[projectid] value="<%= session[:projectid] %>"/>
+  <% if @userid.nil? %>
+  	<input type="hidden" id=weeklyreport_author_id name=weeklyreport[author_id] value="<%= @weeklyreport.author_id %>"/>
+  <% else %>
+  	<input type="hidden" id=weeklyreport_author_id name=weeklyreport[author_id] value="<%= @userid %>"/>
+  <% end %>
+  
+  <div class="actions">
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= submit_tag "保存" , :class => "submit" %> 
+  </div>
+  <div>
+  	&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+<% end %>

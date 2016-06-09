@@ -1,0 +1,7 @@
+# English strings go here for Rails i18n
+en:
+  # my_label: "My label"
+  my_label: "周报"
+  my_label2: "周报"
+  field_starttime: 开始日期
+  field_endtime: 结束日期

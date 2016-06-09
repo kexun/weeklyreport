@@ -1,0 +1,37 @@
+<p><%= notice %></p>
+<h1>查看</h1>
+
+<table width=80% >
+	<tr>
+		<td>
+			<p>
+			<b>开始日期:</b>
+			<%= @weeklyreport.starttime %>
+		</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p>
+			<b>结束日期:</b>
+			<%= @weeklyreport.endtime %>
+		</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p>
+			<b>日期内容:</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p>
+			<%= textilizable(@weeklyreport, :content) %>
+		</td>
+	</tr>
+</table>
+
+<%= link_to '编辑', edit_weeklyreport_path(@weeklyreport) %> 
+
+<%= link_to '返回', "/redmine/weeklyreports?project_id=#{session[:project_id]}" %>

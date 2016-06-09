@@ -1,0 +1,8 @@
+<script type="text/javascript" src="/redmine/plugin_assets/weeklyreport/javascripts/datepicker.js" charset="UTF-8"> </script>
+<h1>编辑</h1>
+
+<%= render 'form' %>
+
+<%= link_to '查看', @weeklyreport %> |
+<%= link_to '返回', "/redmine/weeklyreports?project_id=#{session[:project_id]}" %>
+	
